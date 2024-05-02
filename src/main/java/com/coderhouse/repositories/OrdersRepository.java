@@ -5,7 +5,7 @@ import com.coderhouse.entities.Products;
 
 import java.util.Date;
 
-public interface SalesRepository {
+public interface OrdersRepository {
     Long getId();
 
     void setId(Long id);

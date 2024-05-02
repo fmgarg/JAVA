@@ -30,7 +30,7 @@ public abstract class Customers implements com.coderhouse.repositories.Customers
 //	private Producto product;
 //	private Integer idProduct;
 
-    @ManyToMany
+/*    @ManyToMany
     @JoinTable(name="Sales"
             ,joinColumns = @JoinColumn(name="user_id")
             ,inverseJoinColumns = @JoinColumn(name="product_id")
@@ -43,7 +43,7 @@ public abstract class Customers implements com.coderhouse.repositories.Customers
 
     public void setProduct(Set<Products> product) {
         this.product = product;
-    }
+    }*/
 
     public Customers() {
     }

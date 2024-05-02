@@ -30,7 +30,7 @@ public class FacturacionEntregaProyectoFinalGonzalezApplication {
 		SpringApplication.run(FacturacionEntregaProyectoFinalGonzalezApplication.class, args);
 	}
 
-	public void listAllCustomers() {
+	public void customersListAll() {
 		List<Customers> listCustomers = customersRepository.findAll();
 		if (listCustomers.isEmpty()) {
 			System.out.println("No customers found");
@@ -40,20 +40,22 @@ public class FacturacionEntregaProyectoFinalGonzalezApplication {
 						"Customer DNI: "
 						+ customer.getDni()
 						+ "name " + customer.getName() + " "
-						+ "surname " + customer.getSurname() + " and purchase "
-						+ customer.getProduct()
+						+ "surname " + customer.getSurname()
+						//+ " and purchase "
+						//+ customer.getProduct()
 				);
 			}
 		}
 	}
 
-	public void addNewCustomer() {
+	public void customerAddNew() {
 		List<Products> listProducts = productsRepository.findAll();
 		if(listProducts.isEmpty()) {
 			System.out.println("No products found");
 		}
 		Scanner scanner = new Scanner(System.in);
-		Customers customer = new Customers() {
+		Customers customer;
+		customer = new Customers() {
 			@Override
 			public void flush() {
 
