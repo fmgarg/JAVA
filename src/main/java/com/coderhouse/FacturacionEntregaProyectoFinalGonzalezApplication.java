@@ -1,7 +1,7 @@
 package com.coderhouse;
 
-import com.coderhouse.entities.Customers;
-import com.coderhouse.entities.Products;
+import com.coderhouse.models.Customers;
+import com.coderhouse.models.Products;
 import com.coderhouse.repositories.CustomersRepository;
 import com.coderhouse.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +20,17 @@ import java.util.function.Function;
 
 @SpringBootApplication
 public class FacturacionEntregaProyectoFinalGonzalezApplication {
-	@Autowired
-	private CustomersRepository customersRepository;
+/*	@Autowired
+	private CustomersRepository customersRepository;*/
 
-	@Autowired
-	private ProductsRepository productsRepository;
+/*	@Autowired
+	private ProductsRepository productsRepository;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(FacturacionEntregaProyectoFinalGonzalezApplication.class, args);
 	}
 
-	public void customersListAll() {
+/*	public void customersListAll() {
 		List<Customers> listCustomers = customersRepository.findAll();
 		if (listCustomers.isEmpty()) {
 			System.out.println("No customers found");
@@ -46,9 +46,9 @@ public class FacturacionEntregaProyectoFinalGonzalezApplication {
 				);
 			}
 		}
-	}
+	}*/
 
-	public void customerAddNew() {
+	/*public void customerAddNew() {
 		List<Products> listProducts = productsRepository.findAll();
 		if(listProducts.isEmpty()) {
 			System.out.println("No products found");
@@ -220,5 +220,5 @@ public class FacturacionEntregaProyectoFinalGonzalezApplication {
 		System.out.print("Enter customer email: ");
 		customer.setEmail(scanner.next());
 
-	}
+	}*/
 }

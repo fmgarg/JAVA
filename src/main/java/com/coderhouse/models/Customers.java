@@ -1,14 +1,13 @@
-package com.coderhouse.entities;
-
+package com.coderhouse.models;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Customers")
-public abstract class Customers implements com.coderhouse.repositories.CustomersRepository {
+public class Customers {
     @Id
     @Column(name="dni")
     private Integer dni;
@@ -23,6 +22,7 @@ public abstract class Customers implements com.coderhouse.repositories.Customers
     @Column(name="email")
     private String email;
     @Column(name="bornday")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date bornday;
 
 //	@ManyToOne
@@ -46,6 +46,7 @@ public abstract class Customers implements com.coderhouse.repositories.Customers
     }*/
 
     public Customers() {
+        super();
     }
 
     public Integer getDni() {

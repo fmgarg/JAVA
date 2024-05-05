@@ -1,4 +1,4 @@
-package com.coderhouse.entities;
+package com.coderhouse.models;
 
 import jakarta.persistence.*;
 

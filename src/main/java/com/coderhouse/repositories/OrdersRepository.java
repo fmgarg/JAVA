@@ -1,7 +1,7 @@
 package com.coderhouse.repositories;
 
-import com.coderhouse.entities.Customers;
-import com.coderhouse.entities.Products;
+import com.coderhouse.models.Customers;
+import com.coderhouse.models.Products;
 
 import java.util.Date;
 

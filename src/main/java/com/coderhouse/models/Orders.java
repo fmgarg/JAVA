@@ -1,4 +1,4 @@
-package com.coderhouse.entities;
+package com.coderhouse.models;
 import com.coderhouse.repositories.OrdersRepository;
 import jakarta.persistence.*;
 import java.util.Date;
