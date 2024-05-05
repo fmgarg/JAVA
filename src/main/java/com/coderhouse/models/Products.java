@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Products")
-public abstract class Products implements com.coderhouse.repositories.ProductsRepository {
+public class Products {
     @Id
     @Column(name = "SKU")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

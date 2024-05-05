@@ -22,7 +22,7 @@ public class Customers {
     @Column(name="email")
     private String email;
     @Column(name="bornday")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
     private Date bornday;
 
 //	@ManyToOne
@@ -100,7 +100,4 @@ public class Customers {
         Customers other = (Customers) obj;
         return Objects.equals(email, other.email);
     }
-
-
-
 }
