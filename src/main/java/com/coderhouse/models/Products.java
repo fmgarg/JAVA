@@ -1,6 +1,8 @@
 package com.coderhouse.models;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -17,6 +19,9 @@ public class Products {
     private Integer stock;
     @Column(name = "price")
     private Integer price;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<OrderProduct> orderProducts;
 
 
     public Products() {
@@ -61,5 +66,13 @@ public class Products {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public List<OrderProduct> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
     }
 }

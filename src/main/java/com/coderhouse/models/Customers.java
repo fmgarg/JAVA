@@ -25,26 +25,6 @@ public class Customers {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
     private Date bornday;
 
-//	@ManyToOne
-//	@JoinColumn(name="SKU")
-//	private Producto product;
-//	private Integer idProduct;
-
-/*    @ManyToMany
-    @JoinTable(name="Sales"
-            ,joinColumns = @JoinColumn(name="user_id")
-            ,inverseJoinColumns = @JoinColumn(name="product_id")
-    )
-    private Set<Products> product;
-
-    public Set<Products> getProduct() {
-        return product;
-    }
-
-    public void setProduct(Set<Products> product) {
-        this.product = product;
-    }*/
-
     public Customers() {
         super();
     }

@@ -34,4 +34,7 @@ public class ProductsService {
         }
         return false;
     }
+    public void updateProductStock(Products product, int quantity) {
+        productsRepository.save(product);
+    }
 }
