@@ -3,24 +3,32 @@ import java.util.Date;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-
+@Schema(description = "Customers Model")
 @Entity
 @Table(name="Customers")
 public class Customers {
+    @Schema(description = "Customer Id/ dni", requiredMode = Schema.RequiredMode.REQUIRED, example = "28777888")
     @Id
     @Column(name="dni")
     private Integer dni;
+    @Schema(description = "Customer name", requiredMode = Schema.RequiredMode.REQUIRED, example = "Francisco")
     @Column(name="name")
     private String name;
+    @Schema(description = "Customer surname", requiredMode = Schema.RequiredMode.REQUIRED, example = "Gonzalez")
     @Column(name="surname")
     private String surname;
+    @Schema(description = "Customer address", requiredMode = Schema.RequiredMode.REQUIRED, example = "Las Rosas 333, Don Torcuato")
     @Column(name="address")
     private String address;
+    @Schema(description = "Customer phone", requiredMode = Schema.RequiredMode.REQUIRED, example = "1154122848")
     @Column(name="phone")
     private Integer phone;
+    @Schema(description = "Customer email", requiredMode = Schema.RequiredMode.REQUIRED, example = "fmgarg@gmail.com")
     @Column(name="email")
     private String email;
+    @Schema(description = "Customer bornday", requiredMode = Schema.RequiredMode.REQUIRED, example = "07-07-1977")
     @Column(name="bornday")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
     private Date bornday;

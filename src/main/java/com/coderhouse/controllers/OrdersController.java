@@ -4,6 +4,12 @@ import com.coderhouse.models.Orders;
 import com.coderhouse.models.Products;
 import com.coderhouse.services.OrdersService;
 import com.coderhouse.services.ProductsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Tag(name = "Orders controller", description = "Orders endpoints")
 @RestController
 @RequestMapping("/orders")
 public class OrdersController {
@@ -26,6 +32,26 @@ public class OrdersController {
     private ProductsService productsService;
 
     private final RestTemplate restTemplate = new RestTemplate();
+    @Operation(summary = "List orders")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "List all orders",
+                    content = {
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Orders.class)
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "internal server error",
+                    content = {
+                            @Content()
+                    }
+            )
+    })
     @GetMapping(value= "/", produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public ResponseEntity<List<Orders>> getAllOrders() {
@@ -36,6 +62,26 @@ public class OrdersController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @Operation(summary = "List order by order id")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "List order by order id",
+                    content = {
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Orders.class)
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "internal server error",
+                    content = {
+                            @Content()
+                    }
+            )
+    })
     @GetMapping(value= "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Orders> getOrderById(@PathVariable int id) {
         try{
@@ -49,7 +95,26 @@ public class OrdersController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @Operation(summary = "Save order")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Create new order",
+                    content = {
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Orders.class)
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "internal server error",
+                    content = {
+                            @Content()
+                    }
+            )
+    })
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Orders> saveOrder(@RequestBody Orders order) {
         if (order.getCustomer() == null) { //customer not found
