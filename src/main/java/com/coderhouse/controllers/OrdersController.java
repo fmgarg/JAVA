@@ -9,8 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.client.RestTemplate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,6 +24,8 @@ public class OrdersController {
     private OrdersService ordersService;
     @Autowired
     private ProductsService productsService;
+
+    private final RestTemplate restTemplate = new RestTemplate();
     @GetMapping(value= "/", produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public ResponseEntity<List<Orders>> getAllOrders() {
@@ -52,7 +58,17 @@ public class OrdersController {
         }
         Orders newOrder = new Orders();
         newOrder.setCustomer(order.getCustomer());
-        newOrder.setSaleDate(order.getSaleDate());
+        //newOrder.setSaleDate(order.getSaleDate());
+        String url = "http://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires";
+        Date saleDate = null;
+        try {
+            String response = restTemplate.getForObject(url, String.class);
+            LocalDateTime localDateTime = LocalDateTime.parse(response, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            saleDate = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        } catch (Exception e) {
+            saleDate = new Date();
+        }
+        newOrder.setSaleDate(saleDate);
 
         List<OrderProduct> orderProducts = order.getOrderItems();
         List<OrderProduct> newOrderProducts = new ArrayList<>();
